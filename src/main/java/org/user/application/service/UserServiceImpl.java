@@ -1,8 +1,10 @@
 package org.user.application.service;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.user.infraestructor.persistence.repository.UserEntityRepository;
 import org.user.infraestructor.persistence.entity.UserEntity;
+import org.user.infraestructor.web.exception.UserException;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -24,7 +26,7 @@ public class UserServiceImpl implements UserService {
         if(response == null) {
             return userEntityRepository.save(user);
         }
-        throw  new Exception("Ya existe el correo registrado");
+        throw  new UserException("Ya existe el correo registrado", HttpStatus.CONFLICT);
     }
 
     public UserEntity findById(UUID userUuID) throws Exception {
@@ -32,7 +34,7 @@ public class UserServiceImpl implements UserService {
         if (response.isPresent()){
             return response.get();
         }
-        throw new Exception("No existe el usuario con Id :" + userUuID);
+        throw new UserException("No existe el usuario con Id :" + userUuID, HttpStatus.NOT_FOUND);
     }
 
     public void delete( UUID userUuID) throws Exception {

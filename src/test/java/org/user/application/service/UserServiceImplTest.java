@@ -3,9 +3,15 @@ package org.user.application.service;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 import org.user.infraestructor.persistence.repository.UserEntityRepository;
 import org.user.infraestructor.persistence.entity.UserEntity;
+import org.user.infraestructor.web.exception.UserException;
+
+import java.util.Optional;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -52,5 +58,33 @@ class UserServiceImplTest {
         verify(userEntityRepository, never()).save(existingUser);
     }
 
-    // Similar tests for findById, delete, and update methods
+    @Test
+    void testFindByIdUserExists() throws Exception {
+        // Arrange
+        UUID userId = UUID.randomUUID();
+        UserEntity existingUser = new UserEntity();
+        existingUser.setId(userId);
+        Mockito.when(userEntityRepository.findById(userId)).thenReturn(Optional.of(existingUser));
+
+        // Act
+        UserEntity result = userService.findById(userId);
+
+        // Assert
+        assertEquals(existingUser, result);
+    }
+
+    @Test
+    void testFindByIdUserNotExists() {
+        // Arrange
+        UUID userId = UUID.randomUUID();
+        Mockito.when(userEntityRepository.findById(userId)).thenReturn(Optional.empty());
+
+        // Act and Assert
+        UserException exception = assertThrows(UserException.class, () -> {
+            userService.findById(userId);
+        });
+
+        assertEquals("No existe el usuario con Id :" + userId, exception.getMessage());
+        assertEquals(HttpStatus.NOT_FOUND, exception.getStatus());
+    }
 }
