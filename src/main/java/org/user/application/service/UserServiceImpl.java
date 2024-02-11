@@ -1,8 +1,8 @@
 package org.user.application.service;
 
 import org.springframework.stereotype.Service;
-import org.user.domain.repository.UserEntityRepository;
-import org.user.infraestructor.entity.UserEntity;
+import org.user.infraestructor.persistence.repository.UserEntityRepository;
+import org.user.infraestructor.persistence.entity.UserEntity;
 
 import java.time.LocalDateTime;
 import java.util.Optional;

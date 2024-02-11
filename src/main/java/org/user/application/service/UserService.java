@@ -1,6 +1,6 @@
 package org.user.application.service;
 
-import org.user.infraestructor.entity.UserEntity;
+import org.user.infraestructor.persistence.entity.UserEntity;
 
 import java.util.UUID;
 

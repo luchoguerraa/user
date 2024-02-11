@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.user.domain.repository.UserEntityRepository;
-import org.user.infraestructor.entity.UserEntity;
+import org.user.infraestructor.persistence.repository.UserEntityRepository;
+import org.user.infraestructor.persistence.entity.UserEntity;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
