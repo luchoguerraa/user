@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.user.infraestructor.web.dto.FullUserDTO;
 import org.user.infraestructor.web.request.UserRequest;
 import org.user.application.coordinator.UserCoordinator;
 import org.user.infraestructor.common.CommonAttribute;
@@ -15,10 +16,10 @@ import org.user.infraestructor.web.exception.AttributeException;
 @Validated
 public class UserController {
 
-    private final UserCoordinator userPresenter;
+    private final UserCoordinator userCoordinator;
     private final CommonAttribute commonAtributte;
     public UserController(UserCoordinator userPresenter, CommonAttribute commonAtributte) {
-        this.userPresenter = userPresenter;
+        this.userCoordinator = userPresenter;
         this.commonAtributte = commonAtributte;
     }
 
@@ -26,17 +27,17 @@ public class UserController {
     public ResponseEntity<UserDTO> save(@RequestBody UserRequest userRequest) throws Exception {
         validatePassword(userRequest.getPassword());
         validateEmail(userRequest.getEmail());
-        return ResponseEntity.ok(userPresenter.createUser(userRequest));
+        return ResponseEntity.ok(userCoordinator.createUser(userRequest));
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<UserDTO> find(@PathVariable String id) throws Exception {
-        return ResponseEntity.ok(userPresenter.getUser(id));
+    public ResponseEntity<FullUserDTO> find(@PathVariable String id) throws Exception {
+        return ResponseEntity.ok(userCoordinator.getUser(id));
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable String id) throws Exception {
-        userPresenter.deleteUser(id);
+        userCoordinator.deleteUser(id);
         return ResponseEntity.ok("Usuario eliminado con exito");
     }
 
@@ -45,7 +46,7 @@ public class UserController {
                                           @PathVariable String id ) throws Exception {
         validatePassword(userRequest.getPassword());
         validateEmail(userRequest.getEmail());
-        UserDTO response = userPresenter.updateUser(userRequest, id);
+        UserDTO response = userCoordinator.updateUser(userRequest, id);
         return ResponseEntity.ok(response);
     }
     private void validateEmail(String email) {

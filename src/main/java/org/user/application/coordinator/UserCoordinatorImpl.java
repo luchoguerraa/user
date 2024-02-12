@@ -1,16 +1,17 @@
 package org.user.application.coordinator;
 
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.user.application.domain.entities.User;
+import org.user.infraestructor.web.dto.FullUserDTO;
 import org.user.infraestructor.web.request.UserRequest;
 import org.user.infraestructor.web.dto.UserDTO;
 import org.user.infraestructor.mapper.UserMapper;
-import org.user.application.service.UserService;
-import org.user.infraestructor.persistence.entity.UserEntity;
+import org.user.application.domain.service.UserService;
 
 import java.util.UUID;
 
-@Component
+@Service
 public class UserCoordinatorImpl implements UserCoordinator {
    private final UserService userService;
    private  final UserMapper userMapper;
@@ -21,26 +22,34 @@ public class UserCoordinatorImpl implements UserCoordinator {
    }
 
    @Override
-   public UserDTO getUser(String id) throws Exception {
-      UserEntity response = userService.findById(UUID.fromString(id));
-      return userMapper.userEntityToUserDTO(response);
+   public FullUserDTO getUser(String id) throws Exception {
+      User response;
+      try {
+          response = userService.findById(UUID.fromString(id));
+      } catch (Exception e) {
+
+         throw new Exception("el ID no cumple con el formato UUID");
+      }
+
+      return userMapper.UserToFullUser(response);
    }
 
    @Override
    public UserDTO createUser(UserRequest userRequest) throws Exception {
 
-      UserEntity user = userMapper.userRequestToUserEntity(userRequest);
-      UserEntity response = userService.save(user);
+      User user = userMapper.userRequestToUser(userRequest);
+      User response = userService.save(user);
 
-      return userMapper.userEntityToUserDTO(response);
+      return userMapper.userToUserDTO(response);
    }
 
    @Override
    public UserDTO updateUser(UserRequest userRequest, String id) throws Exception {
 
-      UserEntity user = userMapper.userRequestToUserEntityUpdate(userRequest);
-      UserEntity response = userService.update(user, id);
-      return userMapper.userEntityToUserDTO(response);
+      User user = userMapper.userRequestToUser(userRequest);
+      User response = userService.update(user, id);
+
+      return userMapper.userToUserDTO(response);
    }
 
    @Override
