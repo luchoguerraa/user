@@ -1,5 +1,6 @@
 package org.user.application.domain.service;
 
+import org.apache.tomcat.jni.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.user.application.domain.entities.User;
@@ -23,7 +24,7 @@ public class UserServiceImpl implements UserService {
         this.userMapper = userMapper;
     }
 
-    public User save(User user) throws Exception {
+    public User save(User user) {
 
         String email = userEntityRepository.findAllEmailByEmail(user.getEmail());
 
@@ -37,7 +38,7 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    public User findById(UUID userUuID) throws Exception {
+    public User findById(UUID userUuID) {
         Optional<UserEntity> response = userEntityRepository.findById(userUuID);
         if (response.isPresent()){
             return userMapper.userEntityToUser(response.get());
@@ -55,7 +56,7 @@ public class UserServiceImpl implements UserService {
             }
     }
 
-    public User update(User user, String id) throws Exception {
+    public User update(User user, String id, LocalDateTime modified) {
 
         UserEntity response = userEntityRepository.getById(UUID.fromString(id));
         UserEntity responseMapper = userMapper.userToUserEntity(user);
@@ -65,7 +66,7 @@ public class UserServiceImpl implements UserService {
         response.setPassword(user.getPassword());
         response.setCreated(response.getCreated());
         response.setLastLogin(response.getLastLogin());
-        response.setModified(LocalDateTime.now());
+        response.setModified(modified);
         response.setPhones(responseMapper.getPhones());
 
         UserEntity responseUpdate = userEntityRepository.save(response);

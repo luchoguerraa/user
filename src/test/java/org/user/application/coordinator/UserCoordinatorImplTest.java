@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.user.application.domain.entities.User;
 import org.user.application.domain.service.UserService;
@@ -12,6 +13,8 @@ import org.user.infraestructor.web.dto.FullUserDTO;
 import org.user.infraestructor.web.dto.UserDTO;
 import org.user.infraestructor.web.request.UserRequest;
 import static org.mockito.Mockito.*;
+
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -70,19 +73,20 @@ class UserCoordinatorImplTest {
     @Test
     void updateUser_Success() throws Exception {
 
+        LocalDateTime modified = LocalDateTime.now();
         UserRequest userRequest = new UserRequest();
         User user = new User();
+        user.setCreated(modified);
         String userId = "someId";
         UserDTO expectedDto = UserDTO.builder().build();
-
         when(userMapper.userRequestToUser(userRequest)).thenReturn(user);
-        when(userService.update(user, userId)).thenReturn(user);
+        when(userService.update(Mockito.any(User.class), Mockito.any(String.class), Mockito.any(LocalDateTime.class))).thenReturn(user);
         when(userMapper.userToUserDTO(user)).thenReturn(expectedDto);
 
         UserDTO resultDto = userCoordinator.updateUser(userRequest, userId);
 
         verify(userMapper, times(1)).userRequestToUser(userRequest);
-        verify(userService, times(1)).update(user, userId);
+        verify(userService, times(1)).update(Mockito.any(User.class), Mockito.any(String.class), Mockito.any(LocalDateTime.class));
         verify(userMapper, times(1)).userToUserDTO(user);
         assertEquals(expectedDto, resultDto);
     }

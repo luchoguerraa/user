@@ -9,6 +9,7 @@ import org.user.infraestructor.web.dto.UserDTO;
 import org.user.infraestructor.mapper.UserMapper;
 import org.user.application.domain.service.UserService;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Service
@@ -47,7 +48,7 @@ public class UserCoordinatorImpl implements UserCoordinator {
    public UserDTO updateUser(UserRequest userRequest, String id) throws Exception {
 
       User user = userMapper.userRequestToUser(userRequest);
-      User response = userService.update(user, id);
+      User response = userService.update(user, id, LocalDateTime.now());
 
       return userMapper.userToUserDTO(response);
    }
