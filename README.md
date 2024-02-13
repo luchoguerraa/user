@@ -44,13 +44,13 @@ Deben consistir en letras mayúsculas, letras minúsculas y/o dígitos.
 Deben tener una longitud de al menos 6 caracteres y como máximo 12 caracteres.
 Ejemplo de contraseñas que cumplen con esta expresión regular:
 
-Ejemplo de contraseña que cumplen con la expresión regular :
+### Ejemplo de contraseña que cumplen con la expresión regular :
 
 Abc123
 Password9
 XYz987
 
-Ejemplo de contraseñas que no cumplen con esta expresión regular:
+### Ejemplo de contraseñas que no cumplen con esta expresión regular:
 
 Short (demasiado corta)
 TooLongPassword (demasiado larga)
@@ -66,7 +66,7 @@ Un UUID (Universally Unique Identifier) sigue un formato específico que consta 
 Para garantizar la validez de las direcciones de correo electrónico de los usuarios, se ha establecido el siguiente patrón:
 ^[a-zA-Z]+@[a-zA-Z]+\.[a-zA-Z]{2,}$
 
-Explicación:
+### Explicación:
 
 ^: Marca el inicio de la cadena.
 [a-zA-Z]+: Representa uno o más caracteres alfabéticos (mayúsculas o minúsculas) para la parte local del correo electrónico (antes del símbolo '@').
@@ -75,12 +75,15 @@ Explicación:
 \.: Representa el punto (.) que separa el dominio de nivel superior (TLD) de la dirección de correo electrónico.
 [a-zA-Z]{2,}: Indica que el dominio de nivel superior debe tener al menos dos caracteres alfabéticos (por ejemplo, com, org, es, etc.).
 $: Marca el final de la cadena.
-Ejemplo de Correos Electrónicos Válidos:
+
+### Ejemplo de Correos Electrónicos Válidos:
+
 
 usuario@dominio.com
 john.doe@email.co
 info@company.org
-Ejemplo de Correos Electrónicos No Válidos:
+
+### Ejemplo de Correos Electrónicos No Válidos:
 
 usuario@dominio (falta el TLD)
 correo@.com (falta el dominio)
