@@ -178,8 +178,8 @@ spring.datasource.password=password
 spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
 
 
-Ruta : script /sql_script/script.sql
-acceso url : http://localhost:8080/h2-console/
+#### Ruta : script /sql_script/script.sql
+#### acceso url : http://localhost:8080/h2-console/
 
 ```sql
 -- Tu script SQL aquí
