@@ -167,3 +167,46 @@ curl --location --request DELETE 'http://localhost:8080/api/user/delete/6690d876
 
 ```
 
+## Script base de datos 
+
+### configuracion 
+
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=password
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+
+
+Ruta : script /sql_script/script.sql
+acceso url : http://localhost:8080/h2-console/
+
+```sql
+-- Tu script SQL aquí
+CREATE USER IF NOT EXISTS "SA" SALT '4fa77529ef8dbd39' HASH '925c166550e10ce571e7c6cdc94c63c28e483513b36e5199b7a4950d31bee995' ADMIN;
+CREATE MEMORY TABLE "PUBLIC"."USER_ENTITY"(
+    "ID" BINARY NOT NULL,
+    "CREATED" TIMESTAMP,
+    "EMAIL" VARCHAR(255),
+    "ISACTIVE" BOOLEAN NOT NULL,
+    "LAST_LOGIN" TIMESTAMP,
+    "MODIFIED" TIMESTAMP,
+    "NAME" VARCHAR(255),
+    "PASSWORD" VARCHAR(255),
+    "TOKEN" VARCHAR(255)
+);
+ALTER TABLE "PUBLIC"."USER_ENTITY" ADD CONSTRAINT "PUBLIC"."CONSTRAINT_F" PRIMARY KEY("ID");
+-- 0 +/- SELECT COUNT(*) FROM PUBLIC.USER_ENTITY;
+
+
+CREATE USER IF NOT EXISTS "SA" SALT '4fa77529ef8dbd39' HASH '925c166550e10ce571e7c6cdc94c63c28e483513b36e5199b7a4950d31bee995' ADMIN;
+CREATE MEMORY TABLE "PUBLIC"."USER_ENTITY_PHONES"(
+    "USER_ENTITY_ID" BINARY NOT NULL,
+    "CITYCODE" VARCHAR(255),
+    "CONTRYCODE" VARCHAR(255),
+    "NUMBER" VARCHAR(255)
+);
+-- 0 +/- SELECT COUNT(*) FROM PUBLIC.USER_ENTITY_PHONES;
+ALTER TABLE "PUBLIC"."USER_ENTITY_PHONES" ADD CONSTRAINT "PUBLIC"."FKHNFXNKTR1RLRIPFYWJP15I0V8" FOREIGN KEY("USER_ENTITY_ID") REFERENCES "PUBLIC"."USER_ENTITY"("ID") NOCHECK;
+```
+
