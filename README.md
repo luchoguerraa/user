@@ -46,15 +46,16 @@ Ejemplo de contraseñas que cumplen con esta expresión regular:
 
 ### Ejemplo de contraseña que cumplen con la expresión regular :
 
-Abc123
-Password9
-XYz987
+##### 1. Abc123
+##### 2. Password9
+##### 3. XYz987
 
 ### Ejemplo de contraseñas que no cumplen con esta expresión regular:
 
-Short (demasiado corta)
-TooLongPassword (demasiado larga)
-Special@Chars (contiene caracteres especiales, que no están permitidos según la expresión regular)
+##### 1. abc123!: Contiene el carácter !, que no es alfanumérico.
+##### 2. user: La longitud es menor que 6 caracteres.
+##### 3. verylongpassword: La longitud es mayor que 12 caracteres.
+##### 4. user@123: Contiene el carácter @, que no es alfanumérico.
 
 ## ID de Usuario
 
