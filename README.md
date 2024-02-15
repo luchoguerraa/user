@@ -3,26 +3,36 @@
 ## Información General
 Este es un proyecto de mantencion de usuarios de BCI.
 
-## Requisitos
-- Java JDK: Versión 17.0.10-jbr
-- Gradle: 7.4-bin
-
 ## Configuración del Proyecto
+
 1. **Clonar el Repositorio:**
     ```bash
     git clone https://github.com/luchoguerraa/user.git
     cd maintainer
     ```
 
-2. **Ejecutar la Aplicación:**
-    ```bash
-    ./gradlew bootRun
-    ```
+## Requisitos
+- Java JDK: Versión 17.0.10-jbr (recomendable usar SDK MAN)
+- Gradle: 7.4-bin (viene como wrapper)
 
-3. **Ejecutar Pruebas Unitarias:**
-    ```bash
-    ./gradlew test
-    ```
+### Instalacion y configuracion java con SDKMAN
+
+#### Ejecuta el siguiente comando en tu terminal para poder bajar las dependencias de sdkman.
+
+- brew install curl zip
+
+#### Luego, usa los siguientes comando para instalar SDKMAN!:
+
+- curl -s "https://get.sdkman.io" | bash
+-  (puede que sea necesario correr este comando si es necesario source ~/.zshrc)
+- validar  que este instalado con : sdk version
+- instalar java : sdk install java 17.0.10-jbr
+
+#### configurar java en el IDE (intelijj recomendable en cualquier version)
+
+Ve a File/Project structure y configura java 17 como en la imagen.
+
+![configuracion java en intellij](images/diagrama4.png)
 
 ## Configuración de Lombok en IntelliJ IDEA
 1. Instala el plugin de Lombok en IntelliJ IDEA.
@@ -30,6 +40,18 @@ Este es un proyecto de mantencion de usuarios de BCI.
    ![configuracion Lombok en intellij](images/lombok.png)
 
 3. Reinicia IntelliJ IDEA.
+
+4.**Ejecutar la Aplicación:**
+    ```bash
+    ./gradlew bootRun
+    ```
+
+5.**Ejecutar Pruebas Unitarias:**
+    ```bash
+    ./gradlew test
+    ```
+
+
 
 ## Patrones de Contraseña
 La expresión regular ^[a-zA-Z0-9]{6,12}$ es un patrón que se utiliza para validar contraseñas. Aquí hay una explicación de los elementos de la expresión regular:
