@@ -182,7 +182,7 @@ curl --location --request DELETE 'http://localhost:8080/api/user/delete/6690d876
 #### spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
 
 
-#### Ruta : script /sql_script/script.sql
+### Ruta : script /sql_script/script.sql
 #### Acceso url : http://localhost:8080/h2-console/
 
 ```sql
