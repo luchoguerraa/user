@@ -95,7 +95,7 @@ $: Marca el final de la cadena.
 
 Este patrón asegura que las direcciones de correo electrónico de los usuarios cumplan con un formato estándar, proporcionando una capa adicional de validación en la entrada de datos.
 
-## Diseño 
+## Diseño Aplicación
 
 ### Componentes
 ![diseño](images/diagrama1.png)
