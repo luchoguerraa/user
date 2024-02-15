@@ -62,6 +62,9 @@ Ejemplo de contraseñas que cumplen con esta expresión regular:
 Para el usuario se debe seguir con el formato de UUID.
 
 Un UUID (Universally Unique Identifier) sigue un formato específico que consta de 32 caracteres hexadecimales, divididos en cinco grupos separados por guiones, con la siguiente estructura:
+
+### ejemplo : 6690d876-76c6-445b-acb5-db3398d5c
+
 ## Email
 
 Para garantizar la validez de las direcciones de correo electrónico de los usuarios, se ha establecido el siguiente patrón:
@@ -80,9 +83,9 @@ $: Marca el final de la cadena.
 ### Ejemplo de Correos Electrónicos Válidos:
 
 
-usuario@dominio.com
-john.doe@email.co
-info@company.org
+#### usuario@dominio.com
+#### john.doe@email.co
+#### info@company.org
 
 ### Ejemplo de Correos Electrónicos No Válidos:
 
@@ -170,7 +173,7 @@ curl --location --request DELETE 'http://localhost:8080/api/user/delete/6690d876
 
 ## Script base de datos 
 
-### configuracion 
+### Configuracion 
 
 spring.datasource.url=jdbc:h2:mem:testdb
 spring.datasource.driverClassName=org.h2.Driver
@@ -180,7 +183,7 @@ spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
 
 
 #### Ruta : script /sql_script/script.sql
-#### acceso url : http://localhost:8080/h2-console/
+#### Acceso url : http://localhost:8080/h2-console/
 
 ```sql
 -- Tu script SQL aquí
