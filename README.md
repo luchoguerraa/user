@@ -63,7 +63,7 @@ Para el usuario se debe seguir con el formato de UUID.
 
 Un UUID (Universally Unique Identifier) sigue un formato específico que consta de 32 caracteres hexadecimales, divididos en cinco grupos separados por guiones, con la siguiente estructura:
 
-### ejemplo : 6690d876-76c6-445b-acb5-db3398d5c
+### Ejemplo : 6690d876-76c6-445b-acb5-db3398d5c
 
 ## Email
 
@@ -89,11 +89,11 @@ $: Marca el final de la cadena.
 
 ### Ejemplo de Correos Electrónicos No Válidos:
 
-usuario@dominio (falta el TLD)
-correo@.com (falta el dominio)
-@dominio.com (falta la parte local)
-Este patrón asegura que las direcciones de correo electrónico de los usuarios cumplan con un formato estándar, proporcionando una capa adicional de validación en la entrada de datos.
+#### usuario@dominio (falta el TLD)
+#### correo@.com (falta el dominio)
+#### @dominio.com (falta la parte local)
 
+Este patrón asegura que las direcciones de correo electrónico de los usuarios cumplan con un formato estándar, proporcionando una capa adicional de validación en la entrada de datos.
 
 ## Diseño 
 
@@ -175,11 +175,11 @@ curl --location --request DELETE 'http://localhost:8080/api/user/delete/6690d876
 
 ### Configuracion 
 
-spring.datasource.url=jdbc:h2:mem:testdb
-spring.datasource.driverClassName=org.h2.Driver
-spring.datasource.username=sa
-spring.datasource.password=password
-spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+#### spring.datasource.url=jdbc:h2:mem:testdb
+#### spring.datasource.driverClassName=org.h2.Driver
+#### spring.datasource.username=sa
+#### spring.datasource.password=password
+#### spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
 
 
 #### Ruta : script /sql_script/script.sql
