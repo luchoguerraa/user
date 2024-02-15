@@ -42,7 +42,7 @@ class UserCoordinatorImplTest {
         when(userService.findById(userId)).thenReturn(mockedUser);
         when(userMapper.UserToFullUser(mockedUser)).thenReturn(expectedDto);
 
-        FullUserDTO resultDto = userCoordinator.getUser(userId.toString());
+        FullUserDTO resultDto = userCoordinator.getUser(userId);
 
         verify(userService, times(1)).findById(userId);
         verify(userMapper, times(1)).UserToFullUser(mockedUser);
@@ -77,16 +77,16 @@ class UserCoordinatorImplTest {
         UserRequest userRequest = new UserRequest();
         User user = new User();
         user.setCreated(modified);
-        String userId = "someId";
+        UUID userId = UUID.randomUUID();
         UserDTO expectedDto = UserDTO.builder().build();
         when(userMapper.userRequestToUser(userRequest)).thenReturn(user);
-        when(userService.update(Mockito.any(User.class), Mockito.any(String.class), Mockito.any(LocalDateTime.class))).thenReturn(user);
+        when(userService.update(Mockito.any(User.class), Mockito.any(UUID.class), Mockito.any(LocalDateTime.class))).thenReturn(user);
         when(userMapper.userToUserDTO(user)).thenReturn(expectedDto);
 
         UserDTO resultDto = userCoordinator.updateUser(userRequest, userId);
 
         verify(userMapper, times(1)).userRequestToUser(userRequest);
-        verify(userService, times(1)).update(Mockito.any(User.class), Mockito.any(String.class), Mockito.any(LocalDateTime.class));
+        verify(userService, times(1)).update(Mockito.any(User.class), Mockito.any(UUID.class), Mockito.any(LocalDateTime.class));
         verify(userMapper, times(1)).userToUserDTO(user);
         assertEquals(expectedDto, resultDto);
     }
@@ -95,7 +95,7 @@ class UserCoordinatorImplTest {
     void deleteUser_Success() throws Exception {
         String userId = UUID.randomUUID().toString();
 
-        userCoordinator.deleteUser(userId);
+        userCoordinator.deleteUser(UUID.fromString(userId));
 
         verify(userService, times(1)).delete(UUID.fromString(userId));
     }

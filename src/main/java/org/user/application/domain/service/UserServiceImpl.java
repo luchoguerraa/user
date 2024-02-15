@@ -1,6 +1,5 @@
 package org.user.application.domain.service;
 
-import org.apache.tomcat.jni.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.user.application.domain.entities.User;
@@ -56,9 +55,9 @@ public class UserServiceImpl implements UserService {
             }
     }
 
-    public User update(User user, String id, LocalDateTime modified) {
+    public User update(User user, UUID id, LocalDateTime modified) {
 
-        UserEntity response = userEntityRepository.getById(UUID.fromString(id));
+        UserEntity response = userEntityRepository.getById(id);
         UserEntity responseMapper = userMapper.userToUserEntity(user);
 
         response.setName(user.getName());
@@ -73,6 +72,4 @@ public class UserServiceImpl implements UserService {
 
         return userMapper.userEntityToUser(responseUpdate);
     }
-
-
 }

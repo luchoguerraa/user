@@ -10,5 +10,5 @@ public interface UserService {
     User save(User user) throws Exception;
     User findById(UUID userUuID) throws Exception;
     void delete( UUID userUuID) throws Exception;
-    User update(User user, String id, LocalDateTime modified) throws Exception;
+    User update(User user, UUID id, LocalDateTime modified) throws Exception;
 }

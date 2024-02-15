@@ -133,7 +133,7 @@ class UserServiceImplTest {
         Mockito.when(userEntityRepository.save(updatedUserEntity)).thenReturn(updatedUserEntity);
         Mockito.when(userMapper.userEntityToUser(updatedUserEntity)).thenReturn(updatedUser);
 
-        User result = userService.update(updatedUser, userId.toString(), modified);
+        User result = userService.update(updatedUser, userId, modified);
 
         assertEquals(updatedUser.getId(), result.getId());
         assertEquals(updatedUser.getName(), result.getName());

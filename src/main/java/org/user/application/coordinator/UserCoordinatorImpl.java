@@ -23,21 +23,12 @@ public class UserCoordinatorImpl implements UserCoordinator {
    }
 
    @Override
-   public FullUserDTO getUser(String id) throws Exception {
-      User response;
-      try {
-          response = userService.findById(UUID.fromString(id));
-      } catch (Exception e) {
-
-         throw new Exception("el ID no cumple con el formato UUID");
-      }
-
-      return userMapper.UserToFullUser(response);
+   public FullUserDTO getUser(UUID id) throws Exception {
+      return userMapper.UserToFullUser(userService.findById(id));
    }
 
    @Override
    public UserDTO createUser(UserRequest userRequest) throws Exception {
-
       User user = userMapper.userRequestToUser(userRequest);
       User response = userService.save(user);
 
@@ -45,8 +36,7 @@ public class UserCoordinatorImpl implements UserCoordinator {
    }
 
    @Override
-   public UserDTO updateUser(UserRequest userRequest, String id) throws Exception {
-
+   public UserDTO updateUser(UserRequest userRequest, UUID id) throws Exception {
       User user = userMapper.userRequestToUser(userRequest);
       User response = userService.update(user, id, LocalDateTime.now());
 
@@ -54,7 +44,7 @@ public class UserCoordinatorImpl implements UserCoordinator {
    }
 
    @Override
-   public void deleteUser(String id) throws Exception {
-       userService.delete(UUID.fromString(id));
+   public void deleteUser(UUID id) throws Exception {
+       userService.delete(id);
    }
 }
