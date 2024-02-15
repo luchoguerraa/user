@@ -41,17 +41,19 @@ Ve a File/Project structure y configura java 17 como en la imagen.
 
 3. Reinicia IntelliJ IDEA.
 
-4.**Ejecutar la Aplicación:**
+4. **Ejecutar la Aplicación:**
     ```bash
     ./gradlew bootRun
     ```
 
-5.**Ejecutar Pruebas Unitarias:**
+5. **Ejecutar Pruebas Unitarias:**
     ```bash
     ./gradlew test
     ```
 
+## Como se usa la aplicacion?
 
+A continuacion te explicamos en diferentes puntos como la API de usuarios del BCI debe ser consumida. Existen un par de temas a considerar que seran explicados en los siguiente puntos que tiene que ver con el uso de la API y los datos necesario que se deben proporcionar (email,password,id). Tambien te entregamos herramientas como swagger que te permitiran entender la documentacion de la API y como esta funciona (+ curls).
 
 ## Patrones de Contraseña
 La expresión regular ^[a-zA-Z0-9]{6,12}$ es un patrón que se utiliza para validar contraseñas. Aquí hay una explicación de los elementos de la expresión regular:
