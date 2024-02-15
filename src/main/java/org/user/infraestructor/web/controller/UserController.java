@@ -48,6 +48,7 @@ public class UserController {
     @PutMapping("/update/{id}")
     public ResponseEntity<UserDTO> update(@RequestBody UserRequest userRequest,
                                           @PathVariable String id ) throws Exception {
+        validateID(id);
         validatePassword(userRequest.getPassword());
         validateEmail(userRequest.getEmail());
         UserDTO response = userCoordinator.updateUser(userRequest, UUID.fromString(id));
@@ -65,7 +66,7 @@ public class UserController {
          }
      }
 
-    private void validateID(String id) throws Exception {
+    private void validateID(String id) {
         try {
             UUID.fromString(id);
         } catch (Exception e) {
